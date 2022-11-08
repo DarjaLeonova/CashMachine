@@ -11,7 +11,7 @@ namespace CashMachine
 
         public int WithDraw(int amount)
         {
-            if (IsAbleToWithdraw(amount))
+            if (IsAbleToWithdraw(amount) && ISValidAmount(amount))
             {
                 _currentAmount -= amount;
                 return amount;
@@ -42,6 +42,17 @@ namespace CashMachine
         private bool IsAbleToWithdraw(int amount)
         {
             return _currentAmount > amount;
+        }
+
+        private bool ISValidAmount(int amount)
+        {
+            if(amount % 5 == 0)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
         }
     }
 }
